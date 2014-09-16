@@ -1,0 +1,50 @@
+body {
+  width: 960px;
+  height:1200px;
+  overflow: hidden;
+  
+}
+html {
+  
+  overflow: hidden;
+}
+#tu{
+  
+ 
+    width: 3000px;
+	height:3000px;
+
+	border:red;
+    color:purple;
+    background:url(scala_fixa1.png);
+	font-size:40px;
+    position: relative;
+	background-size:100% ;
+    background-repeat: no-repeat;
+	
+	}
+#io{
+  
+    left:200px;
+	top:200px;
+    width:2600px;
+	height:2600px;
+	border:red;
+	border-radius: 100%;
+    color:purple;
+    background:url(scala_noua_3.png);
+	font-size:40px;
+    position: relative;
+    background-size:100% ;
+	background-repeat: no-repeat;
+	}
+#fmm{
+  
+    left:-100%;	
+    width:3000px;
+	height:3000px;	
+    color:purple;
+   	font-size:40px;
+    position: relative;
+    
+	}

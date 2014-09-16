@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<script src="jquery-1.11.0.min.js" type="text/javascript"></script>
+<link href="jquery.mobile-1.4.3.min.css" rel="stylesheet" type="text/css">
+
+<script src="jquery.mobile-1.4.3.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="test.css"/>
+<script type="text/javascript">
+
+window.onload = startCalc; 
+        
+window.addEventListener('devicelight', function(event) {
+        var kkk = event.value;
+		if (kkk ==0) 
+		kkk= 1;
+       var luxq = Math.log(kkk+8) / Math.log(2);
+	  var luxq2 = luxq.toFixed(0);
+ document.getElementById('lux1').value = luxq2 ;
+        
+});
+ 
+	 
+
+function startCalc(){
+  interval = setInterval("calc()",1);
+}
+function calc() {
+       var luxq = document.getElementById('lux1').value;
+       var iso = document.getElementById('iso1').value;
+	   var shutter = document.getElementById('shutter1').value;
+       var fstop = document.getElementById('fstop1').value;
+       
+       if (shutter == "")
+           shutter = 0;
+       if (fstop == "")
+           fstop = 0;
+	   if (iso == "")
+           iso = 0;
+	   if (luxq == "")
+           luxq = 0;       		      	  
+       var EV1 = parseInt(shutter) + parseInt(fstop) + parseInt(iso)+parseInt(luxq)+3 ;
+	          
+       if (!isNaN(EV1)) {
+           document.getElementById('txt3').value = EV1;
+		   
+		    }
+	   var aF1= Math.pow(Math.sqrt(2),EV1);
+	          var F2 = aF1-0.2;
+			  if (aF1 > "6")
+			
+             var F1 = F2.toFixed(0);
+		
+		    else 
+             var F1 = aF1.toFixed(1);
+			 if ( F1 == 5.7)
+			      F1=5.6;
+		  
+	   
+		   
+		  
+
+             <!-- var slid = document.getElementById('slider-1').value ; -->
+            var foo = document.getElementById('io'); 
+           foo.style.transform = "rotate("+((parseInt(EV1)*5)+1.5)+"deg)" ;
+                          
+           
+   }
+
+function stopCalc(){
+  clearInterval(interval);
+}
+ 
+// window.addEventListener("devicelight", function (event) {
+//        var luxq = event.value;
+//       document.getElementById('un-id').value = luxq;
+//});
+
+
+
+
+
+
+</script>
+</head>
+
+<body >
+
+
+
+<div data-role="page"id="pagina1">
+<div style="height:200;background:yellow;font-size:60px">EXPONOMETRU</div>
+    <div class="ui-grid-a">
+         
+               <div class="ui-block-a">
+		           
+		               <div id="tu" >
+                       </div>
+		           
+		       </div>
+   	           <div class="ui-block-b">
+		           
+                        <div id="fmm">
+						<div id="io" >
+                        </div>
+		                </div>
+		       </div>
+		 
+     </div>
+          
+        
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+<div style="width:80%;top:-3000px;position:relative"> 
+   <div class="ui-grid-a">
+   <div style="width:200px;left:50%;position:relative">
+          <div class="ui-block-a">
+		  <div >
+		  <button type="button" style="height:50px;width:50px;background:transparent;border-radius:25px">EV</button>
+		  </div>
+		  </div>
+   	      <div class="ui-block-b">
+		  <div style="top:10px;position:relative">
+          <input type="label" id="txt3" onFocus="startCalc();" onBlur="stopCalc()"style="
+		  width:36px;height:46px;padding-left:10px;font-size:25px;background:transparent; position:relative;border-radius:23px;border-style:none" >
+		  </div>
+		  </div>
+		  </div>
+   </div>
+  </div>
+ 
+ <div style="width:80%;top:-3000px;position:relative"> 
+   <div class="ui-grid-a">
+   <div style="width:200px;left:30%;position:relative">
+          <div class="ui-block-a">
+		  <div >
+		  <button type="button" style="height:50px;width:50px;border-radius:25px">EV</button>
+		  </div>
+		  </div>
+   	      <div class="ui-block-b">
+		  <div style="top:6px;width:50px;position:relative">
+          <input type="text" id="txt5"onFocus="startCalc();" onBlur="stopCalc()" >
+		  </div>
+		  </div>
+		  </div>
+   </div>
+  </div>
+  <div style="width:100px;top:-3000px;position:relative">
+<input type="text" id="lux1"></input>
+</div>
+
+<div style="top:-3000px;position:relative">
+<div class="ui-grid-b" >
+<div class="ui-block-a"style="background:transparent">
+    <select id="iso1"onFocus="startCalc();" onBlur="stopCalc();"style="background:transparent">
+	<option style="background:transparent"value="1">50 </option>
+    <option value="2">100 </option>
+    <option value="3">200</option>
+    <option value="4">400</option>
+    <option value="5">800</option>
+    <option value="6">1600</option>
+    <option value="7">3200</option>
+    <option value="8">6400</option>
+    </select>
+	</div>
+	<div class="ui-block-b">
+    <select id="shutter1"onFocus="startCalc();" onBlur="stopCalc();">
+	<option value="1">2 </option>
+    <option value="0">1 </option>
+    <option value="-1">1/2</option>
+    <option value="-2">1/4</option>
+    <option value="-3">1/8</option>
+    <option value="-4">1/16</option>
+    <option value="-5">1/32</option>
+    <option value="-6">1/64</option>
+    </select>
+	</div>
+	<div class="ui-block-c"style="background:transparent">
+    <select id="fstop1"onFocus="startCalc();" onBlur="stopCalc();">
+	<option value="-3">2.8 </option>
+    <option value="-4">4 </option>
+    <option value="-5">5.6</option>
+    <option value="-6">8</option>
+    <option value="-7">11</option>
+    <option value="-8">16</option>
+    <option value="-9">22</option>
+    <option value="-10">32</option>
+    </select>
+	</div>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>
